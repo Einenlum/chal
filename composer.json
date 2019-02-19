@@ -41,7 +41,8 @@
       "assets:install %PUBLIC_DIR%": "symfony-cmd"
     },
     "test": [
-      "phpstan analyse --level=0 src"
+      "phpstan analyse --level=0 src",
+      "phpspec run --format pretty --ansi"
     ],
     "post-install-cmd": [
       "@auto-scripts"
@@ -60,6 +61,7 @@
     }
   },
   "require-dev": {
+    "phpspec/phpspec": "~5.1",
     "phpstan/phpstan": "~0.11"
   }
 }
