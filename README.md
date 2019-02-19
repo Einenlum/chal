@@ -12,7 +12,7 @@ The project is statically checked thanks to [phpstan](https://github.com/phpstan
 
 `make test`
 
-## Detail of some choices
+## Some personal choices in this project
 
 ### Entities
 
