@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+    php:
+        build: './docker/php'
+        volumes:
+            - '.:/usr/share/www/chal'
+        depends_on:
+            - 'db'
+        environment:
+            DATABASE_HOST: "${DATABASE_HOST}"
+            DATABASE_NAME: "${DATABASE_NAME}"
+            DATABASE_PASSWORD: "${DATABASE_PASSWORD}"
+
+    nginx:
+        build: './docker/nginx'
+        volumes:
+            - '.:/usr/share/www/chal:ro'
+        ports:
+            - '80:80'
+        depends_on:
+            - 'php'
+
+    db:
+        image: 'mariadb:10.4.2'
+        volumes:
+            - 'db_data:/var/lib/mysql'
+        environment:
+            MYSQL_ROOT_PASSWORD: "${DATABASE_PASSWORD}"
+
+volumes:
+    db_data:
