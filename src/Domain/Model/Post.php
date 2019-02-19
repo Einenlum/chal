@@ -29,6 +29,11 @@ class Post
     private $content;
 
     /**
+     * @ORM\Column(type="datetime_immutable")
+     */
+    private $creationDate;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Event", inversedBy="posts")
      */
     private $event;
@@ -36,6 +41,7 @@ class Post
     public function __construct(Event $event, string $authorName, string $content)
     {
         $this->id = Uuid::uuid4();
+        $this->creationDate = new \DateTimeImmutable();
         $this->event = $event;
         $event->addPost($this);
         $this->authorName = $authorName;
