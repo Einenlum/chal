@@ -9,6 +9,7 @@
     "symfony/dotenv": "4.2.*",
     "symfony/flex": "^1.1",
     "symfony/framework-bundle": "4.2.*",
+    "symfony/orm-pack": "^1.0",
     "symfony/yaml": "4.2.*"
   },
   "config": {
@@ -41,7 +42,7 @@
       "assets:install %PUBLIC_DIR%": "symfony-cmd"
     },
     "test": [
-      "phpstan analyse --level=0 src",
+      "phpstan analyse --level=7 src",
       "phpspec run --format pretty --ansi"
     ],
     "post-install-cmd": [
