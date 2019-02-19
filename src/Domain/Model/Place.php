@@ -11,7 +11,7 @@ use Ramsey\Uuid\Uuid;
 /**
  * @ORM\Entity
  */
-class Place
+final class Place
 {
     const TYPE_CONCERT_HALL = 'concert hall';
     const TYPE_GALLERY = 'gallery';

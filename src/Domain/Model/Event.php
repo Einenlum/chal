@@ -12,7 +12,7 @@ use App\Domain\Model\Event\Period;
 /**
  * @ORM\Entity
  */
-class Event
+final class Event
 {
     const TYPE_CONCERT = 'concert';
     const TYPE_ART_EXHIBITION = 'art exhibition';
@@ -64,6 +64,7 @@ class Event
         $this->start = $period->getStart();
         $this->end = $period->getEnd();
         $this->place = $place;
+        $this->place->addEvent($this);
         $this->name = $name;
         $this->type = $type;
         $this->posts = new ArrayCollection();
