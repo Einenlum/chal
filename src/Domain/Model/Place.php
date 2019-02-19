@@ -6,6 +6,7 @@ namespace App\Domain\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Ramsey\Uuid\Uuid;
 
 /**
  * @ORM\Entity
@@ -17,9 +18,8 @@ class Place
     const TYPE_GYM = 'gym';
 
     /**
-     * @ORM\Column(type="bigint")
+     * @ORM\Column(type="uuid", unique=true)
      * @ORM\Id
-     * @ORM\GeneratedValue
      */
     private $id;
 
@@ -40,6 +40,7 @@ class Place
 
     private function __construct(string $name, string $type)
     {
+        $this->id = Uuid::uuid4();
         $this->name = $name;
         $this->type = $type;
         $this->events = new ArrayCollection();

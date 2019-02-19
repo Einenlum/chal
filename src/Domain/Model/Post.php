@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\Model;
 
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 
 /**
  * @ORM\Entity
@@ -12,9 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Post
 {
     /**
-     * @ORM\Column(type="bigint")
+     * @ORM\Column(type="uuid", unique=true)
      * @ORM\Id
-     * @ORM\GeneratedValue
      */
     private $id;
 
@@ -35,6 +35,7 @@ class Post
 
     public function __construct(Event $event, string $authorName, string $content)
     {
+        $this->id = Uuid::uuid4();
         $this->event = $event;
         $event->addPost($this);
         $this->authorName = $authorName;
