@@ -1,0 +1,15 @@
+App\Application\DTO\Place\Create:
+    properties:
+        name:
+            - Type: string
+            - NotBlank: ~
+        type:
+            - App\Infrastructure\Symfony\Validator\Constraints\Place\ValidType: ~
+        latitude:
+            - Type: float
+            - GreaterThanOrEqual: !php/const App\Domain\Model\Geolocation\Position::LATITUDE_MIN
+            - LessThanOrEqual: !php/const App\Domain\Model\Geolocation\Position::LATITUDE_MAX
+        longitude:
+            - Type: float
+            - GreaterThanOrEqual: !php/const App\Domain\Model\Geolocation\Position::LONGITUDE_MIN
+            - LessThanOrEqual: !php/const App\Domain\Model\Geolocation\Position::LONGITUDE_MAX
