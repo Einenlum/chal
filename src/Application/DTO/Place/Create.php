@@ -18,7 +18,7 @@ final class Create
     {
         $dto = new self();
         foreach ($data as $key => $value) {
-            $dto->{$key} = $value;
+            $dto->$key = $value;
         }
 
         return $dto;
