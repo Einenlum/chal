@@ -1,4 +1,4 @@
-# chal
+# Coding challenge
 
 ## Install
 
