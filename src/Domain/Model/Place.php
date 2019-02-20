@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\Uuid;
 use App\Domain\Model\Geolocation\Position;
+use App\Domain\Exception\Place\InvalidTypeException;
 
 /**
  * @ORM\Entity
@@ -50,28 +51,21 @@ final class Place
      */
     private $events;
 
-    private function __construct(string $name, Position $position, string $type)
+    public function __construct(string $name, Position $position, string $type)
     {
         $this->id = Uuid::uuid4();
+        if (!$this->isTypeValid($type)) {
+            throw InvalidTypeException::triedWith($type);
+        }
         $this->position = $position;
         $this->name = $name;
         $this->type = $type;
         $this->events = new ArrayCollection();
     }
 
-    public static function createConcertHall(string $name, Position $position): self
+    public static function isTypeValid(string $type): bool
     {
-        return new self($name, $position, self::TYPE_CONCERT_HALL);
-    }
-
-    public static function createGallery(string $name, Position $position): self
-    {
-        return new self($name, $position, self::TYPE_GALLERY);
-    }
-
-    public static function createGym(string $name, Position $position): self
-    {
-        return new self($name, $position, self::TYPE_GYM);
+        return in_array($value, self::VALID_TYPES);
     }
 
     public function addEvent(Event $event)
