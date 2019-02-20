@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use App\Domain\Model\Time\Period;
+use App\Domain\Exception\Event\InvalidTypeException;
 
 /**
  * @ORM\Entity
@@ -17,6 +18,12 @@ final class Event
     const TYPE_CONCERT = 'concert';
     const TYPE_ART_EXHIBITION = 'art exhibition';
     const TYPE_SPORT_EVENT = 'sport event';
+
+    const VALID_TYPES = [
+        self::TYPE_CONCERT,
+        self::TYPE_ART_EXHIBITION,
+        self::TYPE_SPORT_EVENT,
+    ];
 
     /**
      * @ORM\Column(type="uuid", unique=true)
@@ -54,12 +61,15 @@ final class Event
      */
     private $posts;
 
-    private function __construct(
+    public function __construct(
         Place $place,
         Period $period,
         string $name,
         string $type
     ) {
+        if (!$this->isTypeValid($type)) {
+            throw InvalidTypeException::triedWith($type);
+        }
         $this->id = Uuid::uuid4();
         $this->start = $period->getStart();
         $this->end = $period->getEnd();
@@ -70,19 +80,9 @@ final class Event
         $this->posts = new ArrayCollection();
     }
 
-    public static function createConcert(Place $place, Period $period, string $name): self
+    public static function isTypeValid(string $type): bool
     {
-        return new self($place, $period, $name, self::TYPE_CONCERT);
-    }
-
-    public static function createArtExhibition(Place $place, Period $period, string $name): self
-    {
-        return new self($place, $period, $name, self::TYPE_ART_EXHIBITION);
-    }
-
-    public static function createSportEvent(Place $place, Period $period, string $name): self
-    {
-        return new self($place, $period, $name, self::TYPE_SPORT_EVENT);
+        return in_array($type, self::VALID_TYPES);
     }
 
     public function addPost(Post $post)
