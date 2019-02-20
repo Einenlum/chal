@@ -7,9 +7,7 @@ App\Application\DTO\Place\Create:
             - App\Infrastructure\Symfony\Validator\Constraints\Place\ValidType: ~
         latitude:
             - Type: float
-            - GreaterThanOrEqual: !php/const App\Domain\Model\Geolocation\Position::LATITUDE_MIN
-            - LessThanOrEqual: !php/const App\Domain\Model\Geolocation\Position::LATITUDE_MAX
+            - App\Infrastructure\Symfony\Validator\Constraints\Geolocation\Position\ValidLatitude: ~
         longitude:
             - Type: float
-            - GreaterThanOrEqual: !php/const App\Domain\Model\Geolocation\Position::LONGITUDE_MIN
-            - LessThanOrEqual: !php/const App\Domain\Model\Geolocation\Position::LONGITUDE_MAX
+            - App\Infrastructure\Symfony\Validator\Constraints\Geolocation\Position\ValidLongitude: ~
