@@ -48,3 +48,7 @@ Others (`App\Infrastructure\Symfony\Request\Subscriber\TransformUuids`) transfor
 
 It's maybe a bit overkill, but it's always fun to play with listeners.
 Also `EventSubscriber`s are preferred to `EventListener`s because we know right away when reading the the classes which events they're listening at. Plus, the use of constants avoid typo mistakes.
+
+## TODO
+
+- Explain the proxy part
