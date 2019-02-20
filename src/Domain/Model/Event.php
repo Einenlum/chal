@@ -13,7 +13,7 @@ use App\Domain\Exception\Event\InvalidTypeException;
 /**
  * @ORM\Entity
  */
-final class Event
+class Event
 {
     const TYPE_CONCERT = 'concert';
     const TYPE_ART_EXHIBITION = 'art exhibition';
@@ -93,5 +93,18 @@ final class Event
     public function getPeriod(): Period
     {
         return new Period($this->start, $this->end);
+    }
+
+    public function getData(): array
+    {
+        return [
+            'id' => $this->id,
+            'period' => $this->getPeriod(),
+            'place' => $this->place,
+            'name' => $this->name,
+            'type' => $this->type,
+            'posts' => $this->posts,
+            'position' => $this->place->getPosition(),
+        ];
     }
 }

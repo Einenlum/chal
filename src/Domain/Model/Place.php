@@ -13,7 +13,7 @@ use App\Domain\Exception\Place\InvalidTypeException;
 /**
  * @ORM\Entity
  */
-final class Place
+class Place
 {
     const TYPE_CONCERT_HALL = 'concert hall';
     const TYPE_GALLERY = 'gallery';
@@ -71,6 +71,11 @@ final class Place
     public function addEvent(Event $event)
     {
         $this->events->add($event);
+    }
+
+    public function getPosition(): Position
+    {
+        return $this->position;
     }
 
     public function getData(): array

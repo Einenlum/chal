@@ -10,7 +10,7 @@ use Ramsey\Uuid\Uuid;
 /**
  * @ORM\Entity
  */
-final class Post
+class Post
 {
     /**
      * @ORM\Column(type="uuid", unique=true)
