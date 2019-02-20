@@ -1,0 +1,69 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Infrastructure\Symfony\Request\Subscriber;
+
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpKernel\KernelEvents;
+use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use App\Infrastructure\Symfony\Request\Annotations\Extractor;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\SerializerInterface;
+
+/**
+ * This subscriber runs after the DecodeJson subscriber.
+ * If the Controller __invoke action has an @InjectDTO Annotation,
+ * it will take the data from the request (the decoded json content)
+ * and transform it into the asked DTO.
+ *
+ * The DTO is validated and if errors appear, the errors are serialized
+ * and sent as response.
+ * If everything is ok, the DTO is injected in the Request's attributes,
+ * so that the controller can have it injected automatically as a
+ * `$dto` argument.
+ */
+final class InjectDTOIfNeeded implements EventSubscriberInterface
+{
+    private $extractor;
+    private $validator;
+    private $serializer;
+
+    public function __construct(
+        Extractor $extractor,
+        ValidatorInterface $validator,
+        SerializerInterface $serializer
+    ) {
+        $this->extractor = $extractor;
+        $this->validator = $validator;
+        $this->serializer = $serializer;
+    }
+
+    public function injectInRequest(FilterControllerEvent $event)
+    {
+        $controller = $event->getController();
+
+        if (null === $dtoClass = $this->extractor->extract($controller)) {
+            return;
+        }
+
+        $request = $event->getRequest();
+        $data = $request->attributes->get('data');
+        $dto = $dtoClass::fromArray($data);
+        $errors = $this->validator->validate($dto);
+        if (count($errors) > 0) {
+            $response = new Response($this->serializer->serialize($errors), 400);
+            $request->setResponse($response);
+
+            return;
+        }
+
+        $request->attributes->set('dto', $dto);
+    }
+
+    public static function getSubscribedEvents(): array
+    {
+        return [KernelEvents::CONTROLLER => ['injectInRequest']];
+    }
+}
