@@ -72,4 +72,15 @@ final class Place
     {
         $this->events->add($event);
     }
+
+    public function getData(): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'type' => $this->type,
+            'position' => $this->position,
+            'events' => $this->events,
+        ];
+    }
 }

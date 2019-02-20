@@ -16,3 +16,10 @@ services:
     App\Infrastructure\Symfony\Controller\:
         resource: '../src/Infrastructure/Symfony/Controller'
         tags: ['controller.service_arguments']
+
+    App\Infrastructure\Serializer\Normalizer:
+        public: false
+        arguments:
+            $factories: !tagged app.infrastructure.serializer_factory
+        tags:
+            - 'serializer.normalizer'

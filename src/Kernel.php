@@ -8,6 +8,7 @@ use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
+use App\Infrastructure\Serializer\Factory;
 
 class Kernel extends BaseKernel
 {
@@ -35,6 +36,13 @@ class Kernel extends BaseKernel
         $loader->load($confDir.'/{packages}/'.$this->environment.'/**/*'.self::CONFIG_EXTS, 'glob');
         $loader->load($confDir.'/{services}'.self::CONFIG_EXTS, 'glob');
         $loader->load($confDir.'/{services}_'.$this->environment.self::CONFIG_EXTS, 'glob');
+    }
+
+    protected function build(ContainerBuilder $container)
+    {
+        $container->registerForAutoconfiguration(Factory::class)
+            ->addTag('app.infrastructure.serializer_factory')
+        ;
     }
 
     protected function configureRoutes(RouteCollectionBuilder $routes)
