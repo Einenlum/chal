@@ -7,6 +7,7 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use App\Domain\Model\Event\Period;
 use App\Domain\Model\Place;
+use App\Domain\Model\Place\Position;
 
 class EventSpec extends ObjectBehavior
 {
@@ -17,7 +18,7 @@ class EventSpec extends ObjectBehavior
 
     function it_returns_a_valid_period()
     {
-        $place = Place::createConcertHall('Olympia');
+        $place = Place::createConcertHall('Olympia', new Position(-1., 2.));
         $period = new Period(
             new \DateTimeImmutable(),
             new \DateTimeImmutable('+1 day')
