@@ -19,8 +19,8 @@ final class Position
 
     public function __construct(float $latitude, float $longitude)
     {
-        $this->checkLatitude($latitude);
-        $this->checkLongitude($longitude);
+        self::checkLatitude($latitude);
+        self::checkLongitude($longitude);
 
         $this->latitude = $latitude;
         $this->longitude = $longitude;
@@ -36,14 +36,14 @@ final class Position
         return $this->latitude;
     }
 
-    private function checkLatitude(float $latitude): void
+    public static function checkLatitude(float $latitude): void
     {
         if ($latitude < self::LATITUDE_MIN || $latitude > self::LATITUDE_MAX) {
             throw InvalidLatitudeException::for($latitude);
         }
     }
 
-    private function checkLongitude(float $longitude): void
+    public static function checkLongitude(float $longitude): void
     {
         if ($longitude < self::LONGITUDE_MIN || $longitude > self::LONGITUDE_MAX) {
             throw InvalidLongitudeException::for($longitude);
