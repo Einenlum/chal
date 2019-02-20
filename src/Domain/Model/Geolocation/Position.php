@@ -9,6 +9,11 @@ use App\Domain\Exception\Geolocation\Position\InvalidLongitudeException;
 
 final class Position
 {
+    const LATITUDE_MIN = -90.;
+    const LATITUDE_MAX = 90.;
+    const LONGITUDE_MIN = -180.;
+    const LONGITUDE_MAX = 180.;
+
     private $latitude;
     private $longitude;
 
@@ -33,14 +38,14 @@ final class Position
 
     private function checkLatitude(float $latitude): void
     {
-        if ($latitude < -90 || $latitude > 90) {
+        if ($latitude < self::LATITUDE_MIN || $latitude > self::LATITUDE_MAX) {
             throw InvalidLatitudeException::for($latitude);
         }
     }
 
     private function checkLongitude(float $longitude): void
     {
-        if ($longitude < -180 || $longitude > 180) {
+        if ($longitude < self::LONGITUDE_MIN || $longitude > self::LONGITUDE_MAX) {
             throw InvalidLongitudeException::for($longitude);
         }
     }

@@ -18,6 +18,12 @@ final class Place
     const TYPE_GALLERY = 'gallery';
     const TYPE_GYM = 'gym';
 
+    const VALID_TYPES = [
+        self::TYPE_CONCERT_HALL,
+        self::TYPE_GALLERY,
+        self::TYPE_GYM
+    ];
+
     /**
      * @ORM\Column(type="uuid", unique=true)
      * @ORM\Id
