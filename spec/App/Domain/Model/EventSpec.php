@@ -18,7 +18,7 @@ class EventSpec extends ObjectBehavior
 
     function it_returns_a_valid_period()
     {
-        $place = Place::createConcertHall('Olympia', new Position(-1., 2.));
+        $place = new Place('Olympia', new Position(-1., 2.), Place::TYPE_CONCERT_HALL);
         $period = new Period(
             new \DateTimeImmutable(),
             new \DateTimeImmutable('+1 day')

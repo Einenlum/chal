@@ -6,7 +6,7 @@ namespace App\Domain\Exception\Place;
 
 use App\Domain\Model\Place;
 
-final class InvalidTypeException
+final class InvalidTypeException extends \Exception
 {
     public static function triedWith($value): self
     {

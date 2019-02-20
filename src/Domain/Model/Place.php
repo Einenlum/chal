@@ -65,7 +65,7 @@ final class Place
 
     public static function isTypeValid(string $type): bool
     {
-        return in_array($value, self::VALID_TYPES);
+        return in_array($type, self::VALID_TYPES);
     }
 
     public function addEvent(Event $event)
