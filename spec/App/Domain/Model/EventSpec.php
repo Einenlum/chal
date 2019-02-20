@@ -11,11 +11,6 @@ use App\Domain\Model\Geolocation\Position;
 
 class EventSpec extends ObjectBehavior
 {
-    function it_is_initializable()
-    {
-        $this->shouldHaveType(Event::class);
-    }
-
     function it_returns_a_valid_period()
     {
         $place = new Place('Olympia', new Position(-1., 2.), Place::TYPE_CONCERT_HALL);
@@ -24,11 +19,13 @@ class EventSpec extends ObjectBehavior
             new \DateTimeImmutable('+1 day')
         );
 
-        $this->beConstructedThrough('createConcert', [
+        $this->beConstructedWith(
             $place,
             $period,
             'Lady Gaga',
-        ]);
+            Event::TYPE_CONCERT
+        );
+        $this->shouldHaveType(Event::class);
 
         // The period is a new object created on the fly while asked
         $this->getPeriod()->shouldNotBe($period);
