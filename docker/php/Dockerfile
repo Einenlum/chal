@@ -1,8 +1,10 @@
 FROM php:7.3-fpm-alpine
 
-RUN apk --no-cache add \
-    mariadb-client \
-    icu-dev
+RUN apk --no-cache add $PHPIZE_DEPS \
+    autoconf \
+    icu-dev \
+    mariadb-client && \
+    pecl install xdebug-beta
 
 RUN docker-php-ext-configure intl
 
@@ -11,7 +13,7 @@ RUN docker-php-ext-install \
     pdo \
     pdo_mysql
 
-RUN docker-php-ext-enable intl
+RUN docker-php-ext-enable intl xdebug
 
 RUN echo "date.timezone=\"Europe/Berlin\"" >> /usr/local/etc/php/conf.d/timezone.ini
 
