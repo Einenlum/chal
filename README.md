@@ -37,11 +37,14 @@ In practice though, it happens that DTO have annotations containing constraints.
 
 ### Request lifecycle
 
-Because decoding the request and validating it is a repetitive and tedious task, I decided to implement two event subscribers dedicated to these tasks.
+Because decoding the request and validating it is a repetitive and tedious task, I decided to implement some event subscribers dedicated to these tasks.
 
 The first one (`App\Infrastructure\Symfony\Request\Subscriber\DecodeJson`) is taking the request JSON content and tries to decode it. If it fails, then we can already throw a `BadRequestHttpException` (400), because it means the JSON is malformed.
 
-The second one (`App\Infrastructure\Symfony\Request\Subscriber\InjectDTOIfNeeded`) runs after the first one. If the Controller has a custom `@InjectDTO` annotation on the method, it will transform the decoded data from the `Request` to the requested DTO, and it will inject it into the `Request`'s attributes so that it is available in the controller arguments.
+The second one (`App\Infrastructure\Symfony\Request\Subscriber\InjectDTOIfNeeded`) runs after the first one. If the Controller has a custom `@InjectDTO` annotation on the method, it will transform the decoded data from the `Request` to the requested DTO by denormalizing it, and it will inject it into the `Request`'s attributes so that it is available in the controller arguments.
+Also, if there is a `mapping` argument, it will take an attribute from the request (like a resolved url parameter for example) and inject it into the data to denormalize.
 
-It's maybe a bit overkill, but it's always fun to play with the listeners.
+Others (`App\Infrastructure\Symfony\Request\Subscriber\TransformUuids`) transform some simple parameters to handle them more easily, like transforming a string into a real `Uuid` object.
+
+It's maybe a bit overkill, but it's always fun to play with listeners.
 Also `EventSubscriber`s are preferred to `EventListener`s because we know right away when reading the the classes which events they're listening at. Plus, the use of constants avoid typo mistakes.
