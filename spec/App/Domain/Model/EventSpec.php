@@ -7,7 +7,7 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use App\Domain\Model\Time\Period;
 use App\Domain\Model\Place;
-use App\Domain\Model\Place\Position;
+use App\Domain\Model\Geolocation\Position;
 
 class EventSpec extends ObjectBehavior
 {

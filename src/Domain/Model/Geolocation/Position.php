@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Model\Place;
+namespace App\Domain\Model\Geolocation;
 
-use App\Domain\Exception\Place\Position\InvalidLatitudeException;
-use App\Domain\Exception\Place\Position\InvalidLongitudeException;
+use App\Domain\Exception\Geolocation\Position\InvalidLatitudeException;
+use App\Domain\Exception\Geolocation\Position\InvalidLongitudeException;
 
 final class Position
 {

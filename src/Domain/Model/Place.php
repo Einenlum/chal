@@ -7,7 +7,7 @@ namespace App\Domain\Model;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\Uuid;
-use App\Domain\Model\Place\Position;
+use App\Domain\Model\Geolocation\Position;
 
 /**
  * @ORM\Entity

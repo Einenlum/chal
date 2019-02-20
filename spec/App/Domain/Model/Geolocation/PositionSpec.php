@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\App\Domain\Model\Place;
+namespace spec\App\Domain\Model\Geolocation;
 
-use App\Domain\Model\Place\Position;
+use App\Domain\Model\Geolocation\Position;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use App\Domain\Exception\Place\Position\InvalidLatitudeException;
-use App\Domain\Exception\Place\Position\InvalidLongitudeException;
+use App\Domain\Exception\Geolocation\Position\InvalidLatitudeException;
+use App\Domain\Exception\Geolocation\Position\InvalidLongitudeException;
 
 class PositionSpec extends ObjectBehavior
 {

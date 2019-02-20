@@ -6,7 +6,7 @@ namespace App\Infrastructure\Doctrine\Types;
 
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use App\Domain\Model\Place\Position;
+use App\Domain\Model\Geolocation\Position;
 
 final class PointType extends Type
 {

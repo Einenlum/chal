@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Exception\Place\Position;
+namespace App\Domain\Exception\Geolocation\Position;
 
 final class InvalidLatitudeException extends \Exception
 {
