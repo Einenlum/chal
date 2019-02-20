@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\App\Domain\Model\Event;
+namespace spec\App\Domain\Model\Time;
 
-use App\Domain\Model\Event\Period;
+use App\Domain\Model\Time\Period;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use App\Domain\Exception\InvalidPeriodException;
+use App\Domain\Exception\Time\InvalidPeriodException;
 
 class PeriodSpec extends ObjectBehavior
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Exception;
+namespace App\Domain\Exception\Time;
 
 final class InvalidPeriodException extends \Exception
 {

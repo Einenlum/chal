@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Model\Event;
+namespace App\Domain\Model\Time;
 
-use App\Domain\Exception\InvalidPeriodException;
+use App\Domain\Exception\Time\InvalidPeriodException;
 
 final class Period
 {

@@ -5,7 +5,7 @@ namespace spec\App\Domain\Model;
 use App\Domain\Model\Event;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use App\Domain\Model\Event\Period;
+use App\Domain\Model\Time\Period;
 use App\Domain\Model\Place;
 use App\Domain\Model\Place\Position;
 

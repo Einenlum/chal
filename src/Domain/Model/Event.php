@@ -7,7 +7,7 @@ namespace App\Domain\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
-use App\Domain\Model\Event\Period;
+use App\Domain\Model\Time\Period;
 
 /**
  * @ORM\Entity
