@@ -9,6 +9,7 @@ services:
         resource: '../src/*'
         exclude:
             - '../src/{DependencyInjection,Tests,Kernel.php}'
+            - '../src/Application/DTO'
             - '../src/Domain/Model'
             - '../src/Infrastructure/Doctrine/Migrations'
 
