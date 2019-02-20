@@ -10,5 +10,9 @@ namespace App\Infrastructure\Symfony\Request\Annotations;
  */
 final class InjectDTO
 {
+    /** @Required */
     public $class;
+
+    /** @param array */
+    public $mapping = [];
 }

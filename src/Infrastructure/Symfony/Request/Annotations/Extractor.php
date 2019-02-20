@@ -21,7 +21,7 @@ class Extractor
         $this->reader = $reader;
     }
 
-    public function extract(object $controller): ?string
+    public function extract(object $controller): ?InjectDTO
     {
         $refClass = new \ReflectionClass(get_class($controller));
         $refMethod = $refClass->getMethod('__invoke');
@@ -32,6 +32,6 @@ class Extractor
             return null;
         }
 
-        return $dtoAnnotation->class;
+        return $dtoAnnotation;
     }
 }
