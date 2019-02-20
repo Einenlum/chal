@@ -6,8 +6,25 @@ App\Application\DTO\Place\Create:
         type:
             - App\Infrastructure\Symfony\Validator\Constraints\Place\ValidType: ~
         latitude:
+            - NotNull: ~
             - Type: float
             - App\Infrastructure\Symfony\Validator\Constraints\Geolocation\Position\ValidLatitude: ~
         longitude:
+            - NotNull: ~
             - Type: float
             - App\Infrastructure\Symfony\Validator\Constraints\Geolocation\Position\ValidLongitude: ~
+
+App\Application\DTO\Event\Create:
+    constraints:
+        - App\Infrastructure\Symfony\Validator\Constraints\Event\HasValidPeriod: ~
+    properties:
+        name:
+            - Type: string
+            - NotBlank: ~
+        type:
+            - App\Infrastructure\Symfony\Validator\Constraints\Event\ValidType: ~
+        placeId:
+            - NotNull: ~
+            - Uuid: ~
+        periodStart:
+            - App\Infrastructure\Symfony\Validator\Constraints\IsDateTimeInterface: ~

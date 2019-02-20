@@ -14,7 +14,7 @@ final class ValidLatitudeValidator extends ConstraintValidator
     public function validate($value, Constraint $constraint)
     {
         try {
-            Position::checkLatitude($value);
+            Position::checkLatitude((float) $value);
         } catch (InvalidLatitudeException $exception) {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('{{ min_value }}', (string) Position::LATITUDE_MIN)

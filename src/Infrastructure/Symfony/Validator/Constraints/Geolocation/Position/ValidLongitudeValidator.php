@@ -14,7 +14,7 @@ final class ValidLongitudeValidator extends ConstraintValidator
     public function validate($value, Constraint $constraint)
     {
         try {
-            Position::checkLongitude($value);
+            Position::checkLongitude((float) $value);
         } catch (InvalidLongitudeException $exception) {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('{{ min_value }}', (string) Position::LONGITUDE_MIN)
