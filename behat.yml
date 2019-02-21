@@ -1,0 +1,17 @@
+default:
+  suites:
+
+    api:
+      contexts:
+        - Context\ClientContext:
+          - 'http://nginx_test'
+        - Context\DatabaseContext:
+          - '@kernel'
+        - Context\PlaceContext
+        - Context\EventContext
+  extensions:
+    Behat\Symfony2Extension:
+      kernel:
+        bootstrap: features/bootstrap/bootstrap.php
+        class: App\Kernel
+        env: test
