@@ -6,6 +6,12 @@ The project uses docker and docker-compose.
 
 `make install`
 
+## Run
+
+`make up`
+
+The api should be available on `http://localhost`
+
 ## Tests
 
 The project is statically checked thanks to [phpstan](https://github.com/phpstan/phpstan) and tested with [phpspec](https://github.com/phpspec/phpspec) and [Behat](https://github.com/Behat/Behat).
