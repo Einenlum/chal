@@ -9,19 +9,15 @@ use Symfony\Component\Routing\Annotation\Route;
 use Ramsey\Uuid\Uuid;
 use App\Domain\Exception\Finder\Event\EventNotFoundException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Serializer\SerializerInterface;
+use App\Infrastructure\Symfony\Response\Success\OKResponse;
 
 final class Get
 {
-    private $serializer;
     private $eventFinder;
 
     public function __construct(
-        SerializerInterface $serializer,
         Finder\Event $eventFinder
     ) {
-        $this->serializer = $serializer;
         $this->eventFinder = $eventFinder;
     }
 
@@ -41,6 +37,6 @@ final class Get
             throw new NotFoundHttpException();
         }
 
-        return new Response($this->serializer->serialize($event, 'json'), 201);
+        return OKResponse::createFor($event);
     }
 }

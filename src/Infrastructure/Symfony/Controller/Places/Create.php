@@ -6,26 +6,26 @@ namespace App\Infrastructure\Symfony\Controller\Places;
 
 use Symfony\Component\Routing\Annotation\Route;
 use App\Application\DTO\Place\Create as CreateDTO;
-use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\HttpFoundation\Response;
 use App\Application\Factory\Place\Creation;
 use App\Domain\Repository;
 use App\Infrastructure\Symfony\Request\Annotations\InjectDTO;
+use App\Infrastructure\Symfony\Response\Success\CreatedResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class Create
 {
-    private $serializer;
     private $placeCreationFactory;
     private $placeRepository;
+    private $urlGenerator;
 
     public function __construct(
-        SerializerInterface $serializer,
         Creation $placeCreationFactory,
-        Repository\Place $placeRepository
+        Repository\Place $placeRepository,
+        UrlGeneratorInterface $urlGenerator
     ) {
-        $this->serializer = $serializer;
         $this->placeCreationFactory = $placeCreationFactory;
         $this->placeRepository = $placeRepository;
+        $this->urlGenerator = $urlGenerator;
     }
 
     /**
@@ -37,6 +37,11 @@ final class Create
         $place = $this->placeCreationFactory->createPlace($dto);
         $this->placeRepository->add($place);
 
-        return new Response($this->serializer->serialize($place, 'json'));
+        return CreatedResponse::createFor(
+            $place,
+            $this->urlGenerator->generate('places_get', [
+                'placeId' => (string) $place->getId(),
+            ])
+        );
     }
 }

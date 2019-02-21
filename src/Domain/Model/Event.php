@@ -85,6 +85,11 @@ class Event
         return in_array($type, self::VALID_TYPES);
     }
 
+    public function getId(): Uuid
+    {
+        return $this->id;
+    }
+
     public function addPost(Post $post)
     {
         $this->posts->add($post);

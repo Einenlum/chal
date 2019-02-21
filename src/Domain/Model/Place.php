@@ -68,6 +68,11 @@ class Place
         return in_array($type, self::VALID_TYPES);
     }
 
+    public function getId(): Uuid
+    {
+        return $this->id;
+    }
+
     public function addEvent(Event $event)
     {
         $this->events->add($event);

@@ -48,6 +48,11 @@ class Post
         $this->content = $content;
     }
 
+    public function getId(): Uuid
+    {
+        return $this->id;
+    }
+
     public function getData(): array
     {
         return [

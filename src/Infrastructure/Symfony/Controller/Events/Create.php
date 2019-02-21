@@ -13,23 +13,23 @@ use App\Application\DTO\Event\Create as CreateDTO;
 use App\Application\Factory\Event\Creation;
 use App\Domain\Exception\Finder\Place\PlaceNotFoundException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use App\Infrastructure\Symfony\Response\Success\CreatedResponse;
 
 final class Create
 {
-    private $serializer;
     private $eventRepository;
     private $createEventFactory;
+    private $urlGenerator;
 
     public function __construct(
-        SerializerInterface $serializer,
         Repository\Event $eventRepository,
-        Creation $createEventFactory
+        Creation $createEventFactory,
+        UrlGeneratorInterface $urlGenerator
     ) {
-        $this->serializer = $serializer;
         $this->eventRepository = $eventRepository;
         $this->createEventFactory = $createEventFactory;
+        $this->urlGenerator = $urlGenerator;
     }
 
     /**
@@ -53,6 +53,11 @@ final class Create
 
         $this->eventRepository->add($event);
 
-        return new Response($this->serializer->serialize($event, 'json'), 201);
+        return CreatedResponse::createFor(
+            $event,
+            $this->urlGenerator->generate('events_get', [
+                'eventId' => (string) $event->getId(),
+            ])
+        );
     }
 }

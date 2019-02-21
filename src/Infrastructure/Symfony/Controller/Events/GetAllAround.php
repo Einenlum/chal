@@ -13,6 +13,7 @@ use App\Application\DTO\Event\GetAllAround as GetAllAroundDTO;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use App\Domain\Model\Geolocation\Position;
 use App\Domain\Model\Geolocation\Distance\Meters;
+use App\Infrastructure\Symfony\Response\Success\OKResponse;
 
 final class GetAllAround
 {
@@ -60,6 +61,6 @@ final class GetAllAround
             new Meters($dto->meters)
         );
 
-        return new Response($this->serializer->serialize($events, 'json'), 201);
+        return OKResponse::createFor($events);
     }
 }
