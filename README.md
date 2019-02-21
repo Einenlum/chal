@@ -32,7 +32,7 @@ This architecture helps building solid and maintainable code: **the core of the 
 
 ## Some personal choices in this project
 
-I decided to do almost everything in a customized way, because it's fun. I would use more third party services otherwise (FOSReSTBundle, for example).
+I decided to do almost everything in a customized way, because it's fun. I would use more third party services otherwise (FOSRestBundle, for example).
 
 ### Entities
 
