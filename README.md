@@ -79,3 +79,7 @@ A bit of an extreme example is the class [JsonResponse](src/Infrastructure/Symfo
 Same goes for the [JsonSerializer](Symfony\Component\Serializer\SerializerInterface), hiding the second parameter (`json`) which is always called the same way.
 
 If this is definitely too much for a project of this side, this could help productivity on big projects, after a bit more time of boilerplate, since everything is after based on common conventions.
+
+## Some failures
+
+I could not manage to implement the geolocation part. I thought I could manage to create the DQL functions to use the ST_Distance_Sphere but 1/ I discovered very late that mariadb still does not propose it, 2/ even with MySQL, it seems my formula is wrong somehow.

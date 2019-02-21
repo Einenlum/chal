@@ -42,7 +42,8 @@ final class Event extends ServiceEntityRepository implements Finder\Event, Repos
         return $this->findAll();
 
         /*
-        $point = sprintf("ST_GeomFromText('POINT(%F, %F)')", $position->getLongitude(), $position->getLatitude());
+         * This should have been working… Sad story! :'(
+         *
         $qb
             ->join('e.place', 'place')
             ->where('stdistancesphere(place.position, :position) <= :maxDistance')
