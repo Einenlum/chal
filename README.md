@@ -32,6 +32,8 @@ This architecture helps building solid and maintainable code: **the core of the 
 
 ## Some personal choices in this project
 
+I decided to do almost everything in a customized way, because it's fun. I would use more third party services otherwise (FOSReSTBundle, for example).
+
 ### Entities
 
 I decided to use annotations instead of yaml to define my schema. I would prefer to decouple my models from my entities, but Yaml is deprecated in Doctrine and [will be dropped in Doctrine 3](https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/reference/yaml-mapping.html). Therefore (since I'm not really an XML fan), annotations are used here.
