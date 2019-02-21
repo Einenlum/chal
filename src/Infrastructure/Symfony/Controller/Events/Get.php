@@ -10,6 +10,7 @@ use Ramsey\Uuid\Uuid;
 use App\Domain\Exception\Finder\Event\EventNotFoundException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Infrastructure\Symfony\Response\Success\OKResponse;
+use App\Infrastructure\Symfony\Response\Failure\NotFoundResponse;
 
 final class Get
 {
@@ -34,7 +35,9 @@ final class Get
         try {
             $event = $this->eventFinder->get($eventId);
         } catch (EventNotFoundException $e) {
-            throw new NotFoundHttpException();
+            return NotFoundResponse::withTitle(
+                sprintf('No event was found with id %s', (string) $eventId)
+            );
         }
 
         return OKResponse::createFor($event);

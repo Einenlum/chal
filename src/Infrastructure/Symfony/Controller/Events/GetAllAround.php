@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use App\Domain\Model\Geolocation\Position;
 use App\Domain\Model\Geolocation\Distance\Meters;
 use App\Infrastructure\Symfony\Response\Success\OKResponse;
+use App\Infrastructure\Symfony\Response\Failure\BadRequestResponse;
 
 final class GetAllAround
 {
@@ -50,10 +51,7 @@ final class GetAllAround
         ;
         $errors = $this->validator->validate($dto);
         if (count($errors) > 0) {
-            return new Response(
-                $this->serializer->serialize($errors, 'json'),
-                400
-            );
+            return BadRequestResponse::fromViolationList($errors);
         }
 
         $events = $this->eventFinder->getAllCloseTo(

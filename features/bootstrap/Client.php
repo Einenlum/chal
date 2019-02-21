@@ -102,8 +102,6 @@ class Client
 
     public function lastResponseHasErrors(): bool
     {
-        $decoded = $this->decodeLastResponse();
-
-        return isset($decoded['violations']) && !empty($decoded['violations']);
+        return $this->getLastResponseCode() >= 400;
     }
 }

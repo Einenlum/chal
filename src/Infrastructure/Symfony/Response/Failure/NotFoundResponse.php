@@ -8,8 +8,10 @@ use App\Infrastructure\Symfony\Response\FailureResponse;
 
 final class NotFoundResponse extends FailureResponse
 {
-    public static function createWithErrors(array $errors = [])
+    const TYPE = 'Not Found';
+
+    public static function withTitle(string $title)
     {
-        return new self($errors);
+        return new self(self::TYPE, $title);
     }
 }

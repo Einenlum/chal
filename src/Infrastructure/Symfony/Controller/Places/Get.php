@@ -28,9 +28,7 @@ final class Get
         try {
             $place = $this->placeFinder->get($placeId);
         } catch (PlaceNotFoundException $e) {
-            return NotFoundResponse::createWithErrors([
-                'Place could not be found.'
-            ]);
+            return NotFoundResponse::withTitle('Place could not be found.');
         }
 
         return OKResponse::createFor($place);

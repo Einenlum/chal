@@ -12,6 +12,8 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use App\Infrastructure\Symfony\Response\Failure\NotFoundResponse;
+use App\Infrastructure\Symfony\Response\Failure\BadRequestResponse;
 
 /**
  * This subscriber runs after the DecodeJson subscriber.
@@ -56,7 +58,12 @@ final class InjectDTOIfNeeded implements EventSubscriberInterface
         foreach ($annotation->mapping as $attributeName => $mapToVar) {
             $value = $request->attributes->get($attributeName);
             if (null === $value) {
-                throw new NotFoundHttpException();
+                $controller = function() use ($attributeName) {
+                    return NotFoundResponse::withTitle(
+                        sprintf('Attribute %s was not found', $attributeName)
+                    );
+                };
+                $event->setController($controller);
             }
 
             $data[$mapToVar] = $value;
@@ -64,7 +71,7 @@ final class InjectDTOIfNeeded implements EventSubscriberInterface
         $dto = $this->serializer->denormalize($data, $dtoClass);
         $errors = $this->validator->validate($dto);
         if (count($errors) > 0) {
-            $badRequestResponse = new Response($this->serializer->serialize($errors, 'json'), 400);
+            $badRequestResponse = BadRequestResponse::fromViolationList($errors);
 
             $event->setController(function() use ($badRequestResponse) {
                 return $badRequestResponse;

@@ -8,6 +8,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\KernelEvents;
+use App\Infrastructure\Symfony\Response\Failure\BadRequestResponse;
 
 /**
  * This subscriber takes the json content of the Request,
@@ -32,7 +33,12 @@ final class DecodeJson implements EventSubscriberInterface
         try {
             $data = json_decode($jsonContent, true, 512, \JSON_THROW_ON_ERROR);
         } catch (\JsonException $e) {
-            throw new BadRequestHttpException();
+            $controller = function() {
+                return BadRequestResponse::createWithErrors(['Invalid JSON provided']);
+            };
+            $event->setController($controller);
+
+            return;
         }
 
         $request->attributes->set('data', $data);

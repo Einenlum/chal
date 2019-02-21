@@ -15,6 +15,7 @@ use App\Domain\Exception\Finder\Place\PlaceNotFoundException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use App\Infrastructure\Symfony\Response\Success\CreatedResponse;
+use App\Infrastructure\Symfony\Response\Failure\NotFoundResponse;
 
 final class Create
 {
@@ -48,7 +49,9 @@ final class Create
         try {
             $event = $this->createEventFactory->createEvent($dto);
         } catch (PlaceNotFoundException $e) {
-            throw new NotFoundHttpException();
+            return NotFoundResponse::withTitle(
+                sprintf('No place found with id %s', (string) $dto->placeId)
+            );
         }
 
         $this->eventRepository->add($event);

@@ -6,15 +6,22 @@ namespace App\Infrastructure\Symfony\Response;
 
 abstract class FailureResponse
 {
-    private $errors;
+    private $type;
+    private $title;
 
-    public function __construct(array $errors = [])
+    public function __construct(string $type, string $title)
     {
-        $this->errors = $errors;
+        $this->type = $type;
+        $this->title = $title;
     }
 
-    public function getErrors(): array
+    public function getType(): string
     {
-        return $this->errors;
+        return $this->type;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
     }
 }
