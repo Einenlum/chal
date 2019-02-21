@@ -33,7 +33,7 @@ final class Position
 
     public function getLongitude(): float
     {
-        return $this->latitude;
+        return $this->longitude;
     }
 
     public static function checkLatitude(float $latitude): void
