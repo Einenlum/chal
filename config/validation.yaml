@@ -35,14 +35,14 @@ App\Application\DTO\Event\GetAllAround:
     properties:
         latitude:
             - NotNull: ~
-            - Type: float
             - App\Infrastructure\Symfony\Validator\Constraints\Geolocation\Position\ValidLatitude: ~
+            - Type: float
         longitude:
             - NotNull: ~
-            - Type: float
             - App\Infrastructure\Symfony\Validator\Constraints\Geolocation\Position\ValidLongitude: ~
+            - Type: float
         meters:
+            - Type: float
             - GreaterThanOrEqual:
                 value: 0
             - NotNull: ~
-            - Type: float

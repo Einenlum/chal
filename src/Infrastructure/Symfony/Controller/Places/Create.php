@@ -11,6 +11,7 @@ use App\Domain\Repository;
 use App\Infrastructure\Symfony\Request\Annotations\InjectDTO;
 use App\Infrastructure\Symfony\Response\Success\CreatedResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Swagger\Annotations as SWG;
 
 final class Create
 {
@@ -31,6 +32,47 @@ final class Create
     /**
      * @Route("/places", name="places_create", methods={"POST"})
      * @InjectDTO(class="App\Application\DTO\Place\Create")
+     * @SWG\Response(
+     *     response=201,
+     *     description="The place was successfully created"
+     * )
+     * @SWG\Response(
+     *     response=400,
+     *     description="Invalid arguments"
+     * )
+     * @SWG\Parameter(
+     *     name="parameters",
+     *     in="body",
+     *     schema={
+     *         "type"="object",
+     *         "required"={
+     *             "name",
+     *             "type",
+     *             "latitude",
+     *             "longitude"
+     *         },
+     *         "properties"={
+     *             "name"={
+     *                 "type"="string"
+     *             },
+     *             "type"={
+     *                 "type"="string",
+     *                 "example"="A valid type"
+     *             },
+     *             "latitude"={
+     *                 "type"="number",
+     *                 "format"="float",
+     *                 "example"=23.23
+     *             },
+     *             "longitude"={
+     *                 "type"="number",
+     *                 "format"="float",
+     *                 "example"=-23.23
+     *             },
+     *         }
+     *     }
+     * )
+     * @SWG\Tag(name="places")
      */
     public function __invoke(CreateDTO $dto)
     {

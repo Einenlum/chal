@@ -21,11 +21,13 @@ final class ExceptionSubscriber implements EventSubscriberInterface
 {
     private $serializer;
     private $typeBuilder;
+    private $debugActivated;
 
-    public function __construct(JsonSerializer $serializer, TypeBuilder $typeBuilder)
+    public function __construct(JsonSerializer $serializer, TypeBuilder $typeBuilder, bool $debugActivated)
     {
         $this->serializer = $serializer;
         $this->typeBuilder = $typeBuilder;
+        $this->debugActivated = $debugActivated;
     }
 
     public function serializeException(GetResponseForExceptionEvent $event)
@@ -52,10 +54,15 @@ final class ExceptionSubscriber implements EventSubscriberInterface
         $type = $this->typeBuilder->createType($exception);
         $title = $exception instanceof HttpExceptionInterface
             ? $exception->getMessage()
-            : ''
+            : $this->debugActivated ? $exception->getMessage() : ''
         ;
 
-        return CustomResponse::createWithTypeAndTitle($type, $title);
+        $details = $this->debugActivated
+            ? [$exception->getTraceAsString()]
+            : []
+        ;
+
+        return CustomResponse::createWithTypeAndTitle($type, $title, $details);
     }
 
     private function getStatusCode(\Exception $exception): int

@@ -14,6 +14,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Infrastructure\Symfony\Response\Failure\NotFoundResponse;
 use App\Infrastructure\Symfony\Response\Failure\BadRequestResponse;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 
 /**
  * This subscriber runs after the DecodeJson subscriber.
@@ -68,6 +69,7 @@ final class InjectDTOIfNeeded implements EventSubscriberInterface
 
             $data[$mapToVar] = $value;
         }
+
         $dto = $this->serializer->denormalize($data, $dtoClass);
         $errors = $this->validator->validate($dto);
         if (count($errors) > 0) {

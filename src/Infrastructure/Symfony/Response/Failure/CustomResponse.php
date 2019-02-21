@@ -8,8 +8,8 @@ use App\Infrastructure\Symfony\Response\FailureResponse;
 
 final class CustomResponse extends FailureResponse
 {
-    public static function createWithTypeAndTitle(string $type, string $title): self
+    public static function createWithTypeAndTitle(string $type, string $title, array $details = []): self
     {
-        return new self($type, $title);
+        return new self($type, $title, $details);
     }
 }

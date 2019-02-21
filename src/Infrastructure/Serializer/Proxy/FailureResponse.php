@@ -10,10 +10,12 @@ final class FailureResponse
 {
     public $type;
     public $title;
+    public $details = [];
 
     public function __construct(FailureResponseDTO $failureResponse)
     {
         $this->type = $failureResponse->getType();
         $this->title = $failureResponse->getTitle();
+        $this->details = $failureResponse->getDetails();
     }
 }

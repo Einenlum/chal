@@ -10,6 +10,7 @@ use App\Infrastructure\Symfony\Response\Success\OKResponse;
 use Ramsey\Uuid\Uuid;
 use App\Domain\Exception\Finder\Place\PlaceNotFoundException;
 use App\Infrastructure\Symfony\Response\Failure\NotFoundResponse;
+use Swagger\Annotations as SWG;
 
 final class Get
 {
@@ -22,6 +23,22 @@ final class Get
 
     /**
      * @Route("/places/{placeId}", name="places_get", methods={"GET"})
+     * @SWG\Response(
+     *     response=200,
+     *     description="The representation of the place"
+     * )
+     * @SWG\Response(
+     *     response=404,
+     *     description="Place not found"
+     * )
+     * @SWG\Parameter(
+     *     name="placeId",
+     *     in="path",
+     *     type="string",
+     *     format="uuid",
+     *     required=true
+     * )
+     * @SWG\Tag(name="places")
      */
     public function __invoke(Uuid $placeId)
     {
