@@ -13,7 +13,7 @@ final class PlaceContext implements Context
 
     const PLACE_CREATION_ROUTE = '/places';
 
-    private $createdPlace;
+    private $createdPlaceId;
 
     /**
      * @When I create a place with valid information
@@ -29,7 +29,7 @@ final class PlaceContext implements Context
                 'longitude' => 13.44334
             ]
         );
-        $this->createdPlace = $this->client->decodeLastResponse();
+        $this->createdPlaceId = $this->client->decodeLastResponse();
     }
 
     /**
@@ -61,6 +61,6 @@ final class PlaceContext implements Context
 
     public function getIdOfLastPlaceCreated()
     {
-        return $this->createdPlace['id'];
+        return $this->createdPlaceId;
     }
 }

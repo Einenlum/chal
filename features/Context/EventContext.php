@@ -9,6 +9,7 @@ use Context\HasPlaceContext;
 use Context\HasClient;
 use Ramsey\Uuid\Uuid;
 use Test\Client;
+use Ramsey\Uuid\Exception\InvalidUuidStringException;
 
 final class EventContext implements Context
 {
@@ -18,7 +19,7 @@ final class EventContext implements Context
     const ROUTE_EVENT_CREATE = '/places/{placeId}/events';
     const ROUTE_EVENT_GET = '/events/{eventId}';
 
-    private $createdEvent;
+    private $createdEventId;
 
     /**
      * @When I create an event for an existing place
@@ -36,7 +37,7 @@ final class EventContext implements Context
             ->client
             ->post($path, $this->templateForBaseEvent())
         ;
-        $this->createdEvent = $this->client->decodeLastResponse();
+        $this->createdEventId = $this->client->decodeLastResponse();
     }
 
     /**
@@ -62,9 +63,8 @@ final class EventContext implements Context
     public function askForExistingEvent()
     {
         $this->createEventForExistingPlace();
-        $id = $this->createdEvent['id'];
 
-        $path = str_replace('{eventId}', $id, self::ROUTE_EVENT_GET);
+        $path = str_replace('{eventId}', $this->createdEventId, self::ROUTE_EVENT_GET);
         $this
             ->client
             ->get($path)
@@ -78,9 +78,9 @@ final class EventContext implements Context
     {
         $lastResponse = $this->client->decodeLastResponse();
 
-        if ($lastResponse['name'] !== 'Nice DJ event'
-            || $lastResponse['type'] !== 'concert'
-        ) {
+        try {
+            Uuid::fromString($lastResponse);
+        } catch (InvalidUuidStringException $e) {
             throw new \Exception('The event was not created');
         }
     }
