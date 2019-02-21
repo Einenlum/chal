@@ -29,3 +29,6 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Domain/Model'
                 prefix: 'App\Domain\Model'
                 alias: App
+        dql:
+            numeric_functions:
+                stdistancesphere: 'App\Infrastructure\Doctrine\Functions\STDistanceSphere'

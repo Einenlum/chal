@@ -28,3 +28,21 @@ App\Application\DTO\Event\Create:
             - Uuid: ~
         periodStart:
             - App\Infrastructure\Symfony\Validator\Constraints\IsDateTimeInterface: ~
+        periodEnd:
+            - App\Infrastructure\Symfony\Validator\Constraints\IsDateTimeInterface: ~
+
+App\Application\DTO\Event\GetAllAround:
+    properties:
+        latitude:
+            - NotNull: ~
+            - Type: float
+            - App\Infrastructure\Symfony\Validator\Constraints\Geolocation\Position\ValidLatitude: ~
+        longitude:
+            - NotNull: ~
+            - Type: float
+            - App\Infrastructure\Symfony\Validator\Constraints\Geolocation\Position\ValidLongitude: ~
+        meters:
+            - GreaterThanOrEqual:
+                value: 0
+            - NotNull: ~
+            - Type: float

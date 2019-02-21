@@ -13,6 +13,7 @@ use App\Domain\Exception\Finder\Event\EventNotFoundException;
 use Ramsey\Uuid\Uuid;
 use App\Domain\Model\Geolocation\Position;
 use App\Domain\Model\Geolocation\Distance\Meters;
+use App\Infrastructure\Doctrine\Types\PointType;
 
 final class Event extends ServiceEntityRepository implements Finder\Event, Repository\Event
 {
@@ -38,6 +39,18 @@ final class Event extends ServiceEntityRepository implements Finder\Event, Repos
 
     public function getAllCloseTo(Position $position, Meters $maxDistance): array
     {
-        return [];
+        return $this->findAll();
+
+        /*
+        $point = sprintf("ST_GeomFromText('POINT(%F, %F)')", $position->getLongitude(), $position->getLatitude());
+        $qb
+            ->join('e.place', 'place')
+            ->where('stdistancesphere(place.position, :position) <= :maxDistance')
+            ->setParameter('position', $point)
+            ->setParameter('maxDistance', $maxDistance->getValue())
+            ->getQuery()
+            ->getResult()
+        ;
+         */
     }
 }

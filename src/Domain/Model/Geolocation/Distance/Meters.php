@@ -18,4 +18,9 @@ final class Meters
 
         $this->value = $value;
     }
+
+    public function getValue(): float
+    {
+        return $this->value;
+    }
 }

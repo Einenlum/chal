@@ -30,7 +30,7 @@ final class PointType extends Type
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
         if ($value instanceof Position) {
-            $value = sprintf('POINT(%F %F)', $value->getLongitude(), $value->getLatitude());
+            $value = sprintf('POINT(%F, %F)', $value->getLongitude(), $value->getLatitude());
         }
 
         return $value;
