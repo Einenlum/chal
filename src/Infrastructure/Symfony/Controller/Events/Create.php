@@ -16,6 +16,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use App\Infrastructure\Symfony\Response\Success\CreatedResponse;
 use App\Infrastructure\Symfony\Response\Failure\NotFoundResponse;
+use Swagger\Annotations as SWG;
 
 final class Create
 {
@@ -43,6 +44,58 @@ final class Create
      * @InjectDTO(class="App\Application\DTO\Event\Create", mapping={
      *     "placeId": "placeId"
      * })
+     * @SWG\Response(
+     *     response=201,
+     *     description="The event was successfully created"
+     * )
+     * @SWG\Response(
+     *     response=400,
+     *     description="Invalid arguments"
+     * )
+     * @SWG\Response(
+     *     response=404,
+     *     description="The place does not exist"
+     * )
+     * @SWG\Parameter(
+     *     name="placeId",
+     *     in="path",
+     *     type="string",
+     *     format="uuid",
+     *     required=true
+     * )
+     * @SWG\Parameter(
+     *     name="parameters",
+     *     in="body",
+     *     schema={
+     *         "type"="object",
+     *         "required"={
+     *             "periodStart",
+     *             "periodEnd",
+     *             "name",
+     *             "type"
+     *         },
+     *         "properties"={
+     *             "name"={
+     *                 "type"="string"
+     *             },
+     *             "type"={
+     *                 "type"="string",
+     *                 "example"="A valid type"
+     *             },
+     *             "periodStart"={
+     *                 "type"="string",
+     *                 "format"="date-time",
+     *                 "example"="2017-07-21T17:32:28Z"
+     *             },
+     *             "periodEnd"={
+     *                 "type"="string",
+     *                 "format"="date-time",
+     *                 "example"="2017-09-21T17:32:28Z"
+     *             }
+     *         }
+     *     }
+     * )
+     * @SWG\Tag(name="events")
      */
     public function __invoke(CreateDTO $dto)
     {

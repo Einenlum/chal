@@ -11,6 +11,7 @@ use App\Domain\Exception\Finder\Event\EventNotFoundException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Infrastructure\Symfony\Response\Success\OKResponse;
 use App\Infrastructure\Symfony\Response\Failure\NotFoundResponse;
+use Swagger\Annotations as SWG;
 
 final class Get
 {
@@ -29,6 +30,22 @@ final class Get
      *     methods={"GET"},
      *     requirements={"eventId"="%uuid_regex%"}
      * )
+     * @SWG\Response(
+     *     response=200,
+     *     description="The details of the event"
+     * )
+     * @SWG\Response(
+     *     response=404,
+     *     description="The event does not exist"
+     * )
+     * @SWG\Parameter(
+     *     name="eventId",
+     *     in="path",
+     *     type="string",
+     *     format="uuid",
+     *     required=true
+     * )
+     * @SWG\Tag(name="events")
      */
     public function __invoke(Uuid $eventId)
     {

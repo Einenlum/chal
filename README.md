@@ -10,7 +10,7 @@ The project uses docker and docker-compose.
 
 `make up`
 
-The api should be available on `http://localhost`
+The api documentation should be available on `http://localhost/doc` (or `http://localhost/doc.json` if you want the OpenAPI Json version).
 
 ## Tests
 
@@ -83,3 +83,8 @@ If this is definitely too much for a project of this side, this could help produ
 ## Some failures
 
 I could not manage to implement the geolocation part. I thought I could manage to create the DQL functions to use the ST_Distance_Sphere but 1/ I discovered very late that mariadb still does not propose it, 2/ even with MySQL, it seems my formula is wrong somehow.
+
+The documentation is not very elegant… I have to admit I'm really not a fan of the actual ecosystem around the API documentation in PHP (I'm building an alternative as a side project because of this).
+I used here nelmio api doc because it's pretty easy to use (even if the documentation is really bad, which is kind of a joke) but one drawback is that it uses the OpenAPI spec version 2.0 and still not the 3.0.
+
+No HATEOAS here cause I did not have enough time. Also because I am not a huge fan of it (I don't agree totally with [this angry developer](https://jeffknupp.com/blog/2014/06/03/why-i-hate-hateoas/), but partly at least).

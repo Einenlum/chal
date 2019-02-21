@@ -15,6 +15,7 @@ use App\Domain\Model\Geolocation\Position;
 use App\Domain\Model\Geolocation\Distance\Meters;
 use App\Infrastructure\Symfony\Response\Success\OKResponse;
 use App\Infrastructure\Symfony\Response\Failure\BadRequestResponse;
+use Swagger\Annotations as SWG;
 
 final class GetAllAround
 {
@@ -38,6 +39,36 @@ final class GetAllAround
      *     name="events_get_around",
      *     methods={"GET"}
      * )
+     * @SWG\Response(
+     *     response=200,
+     *     description="The list of all events (should be relative to the location but unfortunately not, cf. the readme)"
+     * )
+     * @SWG\Response(
+     *     response=400,
+     *     description="Invalid arguments"
+     * )
+     * @SWG\Parameter(
+     *     name="latitude",
+     *     in="query",
+     *     type="number",
+     *     format="float",
+     *     required=true
+     * )
+     * @SWG\Parameter(
+     *     name="longitude",
+     *     in="query",
+     *     type="number",
+     *     format="float",
+     *     required=true
+     * )
+     * @SWG\Parameter(
+     *     name="meters",
+     *     in="query",
+     *     type="number",
+     *     format="float",
+     *     required=true
+     * )
+     * @SWG\Tag(name="events")
      */
     public function __invoke(Request $request)
     {
