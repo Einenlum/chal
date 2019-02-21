@@ -47,4 +47,14 @@ class Post
         $this->authorName = $authorName;
         $this->content = $content;
     }
+
+    public function getData(): array
+    {
+        return [
+            'id' => $this->id,
+            'authorName' => $this->authorName,
+            'content' => $this->content,
+            'creationDate' => $this->creationDate,
+        ];
+    }
 }
