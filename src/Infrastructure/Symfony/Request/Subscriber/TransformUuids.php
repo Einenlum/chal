@@ -10,6 +10,10 @@ use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\Exception\InvalidUuidStringException;
 use Symfony\Component\HttpKernel\KernelEvents;
 
+/**
+ * This subscriber checks if there are some uuid string in the
+ * Request attributes and if so transforms them to real Uuid objects
+ */
 final class TransformUuids implements EventSubscriberInterface
 {
     const PRIORITY = 30;
