@@ -1,0 +1,9 @@
+services:
+  Test\Client:
+    class: Test\Client
+    tags:
+      - { name: context.argument_resolver }
+    arguments:
+      $config:
+        base_uri: 'http://nginx_test'
+        connect_timeout: 10 #seconds

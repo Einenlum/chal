@@ -8,7 +8,7 @@ The project uses docker and docker-compose.
 
 ## Tests
 
-The project is statically checked thanks to [phpstan](https://github.com/phpstan/phpstan) and tested with [phpspec](https://github.com/phpspec/phpspec).
+The project is statically checked thanks to [phpstan](https://github.com/phpstan/phpstan) and tested with [phpspec](https://github.com/phpspec/phpspec) and [Behat](https://github.com/Behat/Behat).
 
 `make test`
 

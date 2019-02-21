@@ -21,6 +21,15 @@ services:
         depends_on:
             - 'php'
 
+    nginx_test:
+        build: './docker/nginx-test'
+        volumes:
+            - '.:/usr/share/www/chal:ro'
+        ports:
+            - '81:80'
+        depends_on:
+            - 'php'
+
     db:
         image: 'mariadb:10.4.2'
         volumes:
