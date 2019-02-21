@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Infrastructure\Symfony\Request\Annotations;
 
 use Doctrine\Common\Annotations\Reader;
-use App\Infrastructure\Symfony\Request\Annotations\InjectDTO;
 
 /**
  * This class extracts the InjectDTO annotation on the __invoke method of

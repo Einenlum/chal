@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Symfony\Controller\Places;
 
-use Symfony\Component\Routing\Annotation\Route;
 use App\Application\DTO\Place\Create as CreateDTO;
 use App\Application\Factory\Place\Creation;
 use App\Domain\Repository;
 use App\Infrastructure\Symfony\Request\Annotations\InjectDTO;
 use App\Infrastructure\Symfony\Response\Success\CreatedResponse;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Swagger\Annotations as SWG;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class Create
 {

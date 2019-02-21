@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Doctrine\Repository;
 
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
-use App\Domain\Model;
-use App\Domain\Finder;
-use App\Domain\Repository;
 use App\Domain\Exception\Finder\Event\EventNotFoundException;
-use Ramsey\Uuid\Uuid;
-use App\Domain\Model\Geolocation\Position;
+use App\Domain\Finder;
+use App\Domain\Model;
 use App\Domain\Model\Geolocation\Distance\Meters;
-use App\Infrastructure\Doctrine\Types\PointType;
+use App\Domain\Model\Geolocation\Position;
+use App\Domain\Repository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Ramsey\Uuid\Uuid;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 final class Event extends ServiceEntityRepository implements Finder\Event, Repository\Event
 {

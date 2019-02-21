@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Symfony\Response\Failure;
 
-use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Doctrine\Common\Util\Inflector;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 final class TypeBuilder
 {
@@ -21,7 +21,7 @@ final class TypeBuilder
         }
 
         $fqcn = get_class($exception);
-        $name = substr($fqcn, strrpos($fqcn, '\\')+1);
+        $name = substr($fqcn, strrpos($fqcn, '\\') + 1);
         $name = Inflector::tableize($name);
         $name = str_replace('_', ' ', $name);
         $name = substr($name, 0, -strlen(' http exception'));

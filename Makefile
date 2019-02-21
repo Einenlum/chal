@@ -8,6 +8,9 @@ install:
 up:
 	docker-compose up -d
 
+cs-fix:
+	docker-compose exec php composer cs-fix
+
 unit-test:
 	docker-compose exec php composer unit-test
 

@@ -4,19 +4,17 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Symfony\Controller\Events;
 
-use App\Domain\Repository;
-use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\Routing\Annotation\Route;
-use Ramsey\Uuid\Uuid;
-use App\Infrastructure\Symfony\Request\Annotations\InjectDTO;
 use App\Application\DTO\Event\Create as CreateDTO;
 use App\Application\Factory\Event\Creation;
 use App\Domain\Exception\Finder\Place\PlaceNotFoundException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use App\Infrastructure\Symfony\Response\Success\CreatedResponse;
+use App\Domain\Repository;
+use App\Infrastructure\Symfony\Request\Annotations\InjectDTO;
 use App\Infrastructure\Symfony\Response\Failure\NotFoundResponse;
+use App\Infrastructure\Symfony\Response\Success\CreatedResponse;
+use Ramsey\Uuid\Uuid;
 use Swagger\Annotations as SWG;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 final class Create
 {

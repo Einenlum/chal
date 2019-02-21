@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Domain\Finder;
 
 use App\Domain\Model;
-use Ramsey\Uuid\Uuid;
-use App\Domain\Model\Geolocation\Position;
 use App\Domain\Model\Geolocation\Distance\Meters;
+use App\Domain\Model\Geolocation\Position;
+use Ramsey\Uuid\Uuid;
 
 interface Event
 {

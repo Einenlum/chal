@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Symfony\Validator\Constraints\Event;
 
-use Symfony\Component\Validator\ConstraintValidator;
-use Symfony\Component\Validator\Constraint;
-use App\Domain\Model\Time\Period;
 use App\Domain\Exception\Time\InvalidPeriodException;
+use App\Domain\Model\Time\Period;
+use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\ConstraintValidator;
 
 final class HasValidPeriodValidator extends ConstraintValidator
 {

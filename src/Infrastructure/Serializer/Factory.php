@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\Serializer;
 
 abstract class Factory
@@ -12,8 +14,8 @@ abstract class Factory
 
     public function __construct(string $class, string $proxy, array $dependencies = [])
     {
-        $this->class        = $class;
-        $this->proxy        = $proxy;
+        $this->class = $class;
+        $this->proxy = $proxy;
         $this->dependencies = $dependencies;
     }
 
@@ -34,7 +36,7 @@ abstract class Factory
 
     public function buildProxy($object): object
     {
-        $reflection   = new \ReflectionClass($this->proxy);
+        $reflection = new \ReflectionClass($this->proxy);
         $dependencies = $this->dependencies;
 
         array_unshift($dependencies, $object);

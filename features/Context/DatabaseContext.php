@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Context;
 
-use Behat\Behat\Context\Context;
 use App\Kernel;
-use Behat\Behat\Hook\Call\BeforeScenario;
+use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Call\AfterScenario;
+use Behat\Behat\Hook\Call\BeforeScenario;
 use Behat\Behat\Hook\Scope\AfterScenarioScope;
 use Behat\Testwork\Hook\Call\AfterSuite;
 

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Domain\Model;
 
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
-use Ramsey\Uuid\Uuid;
-use App\Domain\Model\Geolocation\Position;
 use App\Domain\Exception\Place\InvalidTypeException;
+use App\Domain\Model\Geolocation\Position;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 
 /**
  * @ORM\Entity
@@ -22,7 +22,7 @@ class Place
     const VALID_TYPES = [
         self::TYPE_CONCERT_HALL,
         self::TYPE_GALLERY,
-        self::TYPE_GYM
+        self::TYPE_GYM,
     ];
 
     /**

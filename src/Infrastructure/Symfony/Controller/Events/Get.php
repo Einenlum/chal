@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Symfony\Controller\Events;
 
-use App\Domain\Finder;
-use Symfony\Component\Routing\Annotation\Route;
-use Ramsey\Uuid\Uuid;
 use App\Domain\Exception\Finder\Event\EventNotFoundException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use App\Infrastructure\Symfony\Response\Success\OKResponse;
+use App\Domain\Finder;
 use App\Infrastructure\Symfony\Response\Failure\NotFoundResponse;
+use App\Infrastructure\Symfony\Response\Success\OKResponse;
+use Ramsey\Uuid\Uuid;
 use Swagger\Annotations as SWG;
+use Symfony\Component\Routing\Annotation\Route;
 
 final class Get
 {

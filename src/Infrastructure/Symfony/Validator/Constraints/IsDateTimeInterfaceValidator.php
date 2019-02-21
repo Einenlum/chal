@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Symfony\Validator\Constraints;
 
-use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\ConstraintValidator;
 
 final class IsDateTimeInterfaceValidator extends ConstraintValidator
 {

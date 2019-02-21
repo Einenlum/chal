@@ -4,18 +4,14 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Symfony\Response\Subscriber;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use App\Infrastructure\Serializer\JsonSerializer;
-use App\Infrastructure\Symfony\Response\Http\JsonResponse;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Doctrine\Common\Util\Inflector;
-use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use App\Infrastructure\Symfony\Response\Failure\CustomResponse;
 use App\Infrastructure\Symfony\Response\Failure\TypeBuilder;
+use App\Infrastructure\Symfony\Response\Http\JsonResponse;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
+use Symfony\Component\HttpKernel\KernelEvents;
 
 final class ExceptionSubscriber implements EventSubscriberInterface
 {
@@ -45,7 +41,7 @@ final class ExceptionSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            KernelEvents::EXCEPTION => ['serializeException']
+            KernelEvents::EXCEPTION => ['serializeException'],
         ];
     }
 

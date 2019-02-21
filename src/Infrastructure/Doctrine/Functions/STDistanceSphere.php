@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Infrastructure\Doctrine\Functions;
 
 use Doctrine\ORM\Query\AST\Functions\FunctionNode;
+use Doctrine\ORM\Query\Lexer;
 use Doctrine\ORM\Query\Parser;
 use Doctrine\ORM\Query\SqlWalker;
-use Doctrine\ORM\Query\Lexer;
 
 /**
  * I think my DLQ skiils have reached some limits here…

@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App;
 
+use App\Infrastructure\Serializer\Factory;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
-use App\Infrastructure\Serializer\Factory;
 
 class Kernel extends BaseKernel
 {

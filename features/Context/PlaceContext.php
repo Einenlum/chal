@@ -26,7 +26,7 @@ final class PlaceContext implements Context
                 'name' => 'Berghain',
                 'type' => 'concert hall',
                 'latitude' => 52.51138,
-                'longitude' => 13.44334
+                'longitude' => 13.44334,
             ]
         );
         $this->createdPlaceId = $this->client->decodeLastResponse();
@@ -43,7 +43,7 @@ final class PlaceContext implements Context
                 'name' => 'Berghain',
                 'type' => 'concert hall',
                 'latitude' => 2307.98, // Invalid latitude
-                'longitude' => 13.44334
+                'longitude' => 13.44334,
             ],
             Client::DONT_THROW_IF_ERRORS
         );

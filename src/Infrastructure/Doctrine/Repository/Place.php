@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Doctrine\Repository;
 
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
-use App\Domain\Model;
-use App\Domain\Finder;
-use App\Domain\Repository;
-use Ramsey\Uuid\Uuid;
 use App\Domain\Exception\Finder\Place\PlaceNotFoundException;
+use App\Domain\Finder;
+use App\Domain\Model;
+use App\Domain\Repository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Ramsey\Uuid\Uuid;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 final class Place extends ServiceEntityRepository implements Finder\Place, Repository\Place
 {
@@ -20,7 +20,7 @@ final class Place extends ServiceEntityRepository implements Finder\Place, Repos
     }
 
     /**
-     * @{inheritdoc}
+     * {@inheritdoc}
      */
     public function get(Uuid $placeId): Model\Place
     {

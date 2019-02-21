@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Symfony\Response\Subscriber\Success;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
-use App\Infrastructure\Symfony\Response\Success\CreatedResponse;
-use Symfony\Component\HttpFoundation\Response;
 use App\Infrastructure\Serializer\JsonSerializer;
 use App\Infrastructure\Symfony\Response\Http\JsonResponse;
+use App\Infrastructure\Symfony\Response\Success\CreatedResponse;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
+use Symfony\Component\HttpKernel\KernelEvents;
 
 final class CreatedResponseSubscriber implements EventSubscriberInterface
 {

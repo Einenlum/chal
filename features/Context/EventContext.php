@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace Context;
 
 use Behat\Behat\Context\Context;
-use Context\HasPlaceContext;
-use Context\HasClient;
+use Ramsey\Uuid\Exception\InvalidUuidStringException;
 use Ramsey\Uuid\Uuid;
 use Test\Client;
-use Ramsey\Uuid\Exception\InvalidUuidStringException;
 
 final class EventContext implements Context
 {
@@ -112,7 +110,7 @@ final class EventContext implements Context
             'periodStart' => $periodStart,
             'periodEnd' => $periodEnd,
             'name' => 'Nice DJ event',
-            'type' => 'concert'
+            'type' => 'concert',
         ];
     }
 }

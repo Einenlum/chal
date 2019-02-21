@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Symfony\Request\Subscriber;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use App\Infrastructure\Symfony\Request\Annotations\Extractor;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use App\Infrastructure\Symfony\Response\Failure\NotFoundResponse;
 use App\Infrastructure\Symfony\Response\Failure\BadRequestResponse;
-use Symfony\Component\Serializer\Exception\ExceptionInterface;
+use App\Infrastructure\Symfony\Response\Failure\NotFoundResponse;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use Symfony\Component\HttpKernel\KernelEvents;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * This subscriber runs after the DecodeJson subscriber.
@@ -59,7 +57,7 @@ final class InjectDTOIfNeeded implements EventSubscriberInterface
         foreach ($annotation->mapping as $attributeName => $mapToVar) {
             $value = $request->attributes->get($attributeName);
             if (null === $value) {
-                $controller = function() use ($attributeName) {
+                $controller = function () use ($attributeName) {
                     return NotFoundResponse::withTitle(
                         sprintf('Attribute %s was not found', $attributeName)
                     );
@@ -75,7 +73,7 @@ final class InjectDTOIfNeeded implements EventSubscriberInterface
         if (count($errors) > 0) {
             $badRequestResponse = BadRequestResponse::fromViolationList($errors);
 
-            $event->setController(function() use ($badRequestResponse) {
+            $event->setController(function () use ($badRequestResponse) {
                 return $badRequestResponse;
             });
         }

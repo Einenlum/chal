@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Symfony\Response\Subscriber;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use App\Infrastructure\Serializer\JsonSerializer;
-use App\Infrastructure\Symfony\Response\Http\JsonResponse;
-use App\Infrastructure\Symfony\Response\FailureResponse;
-use App\Infrastructure\Symfony\Response\Failure\InternalServerErrorResponse;
-use Symfony\Component\HttpFoundation\Response;
 use App\Infrastructure\Symfony\Response\Failure\BadRequestResponse;
 use App\Infrastructure\Symfony\Response\Failure\NotFoundResponse;
+use App\Infrastructure\Symfony\Response\FailureResponse;
+use App\Infrastructure\Symfony\Response\Http\JsonResponse;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
+use Symfony\Component\HttpKernel\KernelEvents;
 
 final class FailureResponseSubscriber implements EventSubscriberInterface
 {

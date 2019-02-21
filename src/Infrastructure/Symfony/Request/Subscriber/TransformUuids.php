@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Symfony\Request\Subscriber;
 
+use Ramsey\Uuid\Exception\InvalidUuidStringException;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\Exception\InvalidUuidStringException;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**

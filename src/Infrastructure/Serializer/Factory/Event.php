@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Infrastructure\Serializer\Factory;
 
 use App\Domain\Model;
-use App\Infrastructure\Serializer\Proxy;
 use App\Infrastructure\Serializer\Factory;
+use App\Infrastructure\Serializer\Proxy;
 
 class Event extends Factory
 {

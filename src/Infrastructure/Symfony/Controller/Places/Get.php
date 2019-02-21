@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Symfony\Controller\Places;
 
-use Symfony\Component\Routing\Annotation\Route;
+use App\Domain\Exception\Finder\Place\PlaceNotFoundException;
 use App\Domain\Finder;
+use App\Infrastructure\Symfony\Response\Failure\NotFoundResponse;
 use App\Infrastructure\Symfony\Response\Success\OKResponse;
 use Ramsey\Uuid\Uuid;
-use App\Domain\Exception\Finder\Place\PlaceNotFoundException;
-use App\Infrastructure\Symfony\Response\Failure\NotFoundResponse;
 use Swagger\Annotations as SWG;
+use Symfony\Component\Routing\Annotation\Route;
 
 final class Get
 {

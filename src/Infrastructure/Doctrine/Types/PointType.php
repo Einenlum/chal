@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Doctrine\Types;
 
-use Doctrine\DBAL\Types\Type;
-use Doctrine\DBAL\Platforms\AbstractPlatform;
 use App\Domain\Model\Geolocation\Position;
+use Doctrine\DBAL\Platforms\AbstractPlatform;
+use Doctrine\DBAL\Types\Type;
 
 final class PointType extends Type
 {

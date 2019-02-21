@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Domain\Model;
 
+use App\Domain\Exception\Event\InvalidTypeException;
+use App\Domain\Model\Time\Period;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
-use App\Domain\Model\Time\Period;
-use App\Domain\Exception\Event\InvalidTypeException;
 
 /**
  * @ORM\Entity

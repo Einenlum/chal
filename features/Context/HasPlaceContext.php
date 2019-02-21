@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Context;
 
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
-use Context\PlaceContext;
 
 trait HasPlaceContext
 {

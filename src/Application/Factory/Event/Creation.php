@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Application\Factory\Event;
 
 use App\Application\DTO\Event\Create as CreateDTO;
-use App\Domain\Model;
 use App\Domain\Finder;
+use App\Domain\Model;
 use App\Domain\Model\Time\Period;
 
 final class Creation

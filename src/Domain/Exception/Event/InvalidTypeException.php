@@ -13,7 +13,7 @@ final class InvalidTypeException extends \Exception
         return new self(sprintf(
             'The type %s is not valid. Valid types are %s',
             $value,
-            join(', ', array_map(function($type) {
+            join(', ', array_map(function ($type) {
                 return sprintf("'%s'", $type);
             }, Event::VALID_TYPES))
         ));

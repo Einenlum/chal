@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Symfony\Controller\Events;
 
-use App\Domain\Finder;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\HttpFoundation\Request;
 use App\Application\DTO\Event\GetAllAround as GetAllAroundDTO;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
-use App\Domain\Model\Geolocation\Position;
+use App\Domain\Finder;
 use App\Domain\Model\Geolocation\Distance\Meters;
-use App\Infrastructure\Symfony\Response\Success\OKResponse;
+use App\Domain\Model\Geolocation\Position;
 use App\Infrastructure\Symfony\Response\Failure\BadRequestResponse;
+use App\Infrastructure\Symfony\Response\Success\OKResponse;
 use Swagger\Annotations as SWG;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 final class GetAllAround
 {
@@ -72,7 +72,7 @@ final class GetAllAround
      */
     public function __invoke(Request $request)
     {
-        $queryParameters = array_map(function($item) {
+        $queryParameters = array_map(function ($item) {
             return floatval($item);
         }, $request->query->all());
 

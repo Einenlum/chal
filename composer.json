@@ -58,6 +58,9 @@
     "e2e-test": [
       "behat -vvv --no-snippets --colors"
     ],
+    "cs-fix": [
+      "php-cs-fixer fix --config=./.php_cs --allow-risky=yes"
+    ],
     "post-install-cmd": [
       "@auto-scripts"
     ],
@@ -77,7 +80,9 @@
   "require-dev": {
     "behat/behat": "~3.4",
     "behat/symfony2-extension": "^2.1",
+    "friendsofphp/php-cs-fixer": "^2.14",
     "guzzlehttp/guzzle": "^6.3",
+    "m6web/php-cs-fixer-config": "^1.1",
     "phpspec/phpspec": "~5.1",
     "phpstan/phpstan": "~0.11"
   }

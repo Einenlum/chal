@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Symfony\Validator\Constraints\Event;
 
-use Symfony\Component\Validator\ConstraintValidator;
-use Symfony\Component\Validator\Constraint;
 use App\Domain\Model\Event;
+use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\ConstraintValidator;
 
 final class ValidTypeValidator extends ConstraintValidator
 {
