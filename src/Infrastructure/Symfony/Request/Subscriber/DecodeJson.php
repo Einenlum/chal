@@ -25,6 +25,9 @@ final class DecodeJson implements EventSubscriberInterface
     {
         $request = $event->getRequest();
         $jsonContent = $request->getContent();
+        if ($jsonContent === '') {
+            return;
+        }
 
         try {
             $data = json_decode($jsonContent, true, 512, \JSON_THROW_ON_ERROR);
