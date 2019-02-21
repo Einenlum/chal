@@ -20,7 +20,7 @@ The project is statically checked thanks to [phpstan](https://github.com/phpstan
 
 ## Architecture
 
-The project follow an _Hexagonal architecture_: the project is divided between:
+The project follows an _Hexagonal architecture_: it is divided between:
 
 - The `domain` part (all the core knowledge of the domain: here all the core bricks of the app, all the rules concerning places, events, etc.)
 - The `application` part (the parts that will contain the DTOs and some handlers which can apply some actions on the model)
@@ -86,3 +86,5 @@ If this is definitely too much for a project of this side, this could help produ
 - The documentation is not very elegant… I have to admit I'm really not happy with the actual ecosystem around the API documentation in PHP. I used here nelmio api doc because it's pretty easy to use (even if the documentation is really bad, which is kind of a joke) but one drawback is that it uses the OpenAPI spec version 2.0 and still not the 3.0.
 
 - No HATEOAS here cause I did not have enough time. Also because I am not a huge fan of it (I don't agree totally with [this angry developer](https://jeffknupp.com/blog/2014/06/03/why-i-hate-hateoas/), but at least partly).
+
+- PS: Sorry for the last minute cs fixing. It messes up the commit history.
